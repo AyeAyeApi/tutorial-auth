@@ -9,7 +9,6 @@ Requirements
 ------------
 
 To follow this demo, you will need:
-
 - [PHP 5.5][php] or greater
 - [Composer][composer]
 
@@ -26,6 +25,32 @@ Let's start by creating a new project. We're going to need the following package
 - [PHPUnit][phpunit] - For test driven development
 - [Squizlabs PHPCS][phpcs] - Code sniffer for conforming to standards (we use PSR-1 and PSR-2)
 - [PHPMD][phpmd] - Mess detection tool for telling us if our code is too complex 
+
+That's a lot of tools! But don't worry, a lot of it is quality control and planning, and once that's set up we don't
+need to worry so much about it.
+
+### Step 1 - Setting up
+
+Let's get started. We'll begin with just a blank project. From the command line, run:
+
+```bash
+composer init -n --name=[package name]
+```
+
+Swap `[package name]` with whatever you want to call your project. You can additionally add in a license and author 
+here. For example, I used: 
+
+```bash
+composer init -n --name=ayeaye/auth --license=MIT --author="Daniel Mason <daniel@ayeayeapi.com>"
+```
+
+Next, in two seperate steps we'll grab the packages we'll need for our service to run and the packages we'll use for
+development:
+
+```bash
+composer require ayeaye/api doctrine/orm lcobucci/jwt
+composer require --dev ayeaye/behat-feature-context phpunit/phpunit squizlabs/php_codesniffer phpmd/phpmd
+```
 
 
 Part 2 - OAuth Provider
