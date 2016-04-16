@@ -52,6 +52,95 @@ composer require ayeaye/api doctrine/orm lcobucci/jwt
 composer require --dev ayeaye/behat-feature-context phpunit/phpunit squizlabs/php_codesniffer phpmd/phpmd
 ```
 
+Next, lets configure our quality and testing utilities.
+
+We're going to put our source code in a director called `src`, our tests in a directory called `tests` and our public 
+files in a directory called `public`. PHPUnit, PHPCS and PHPMD are all configured using xml files. You can configure
+them however you like, but here's how I configured mine:
+
+#### PHPUnit
+
+You'll notice that I work with all "strict" flags set to true. This will mean a bit of extra work but I personally 
+thing it's worth it as it will mean each test only covers a single unit (unless we specify otherwise).
+
+**phpunit.xml.dist***
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpunit bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         checkForUnintentionallyCoveredCode="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTestSize="true"
+         beStrictAboutChangesToGlobalState="true"
+         verbose="true"
+        >
+    <testsuites>
+        <testsuite name="Tests">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>
+```
+
+#### PHPCS
+
+I follow the PSR-1 and PSR-2 FIG standards, you can configure this with whatever standard you use.
+
+**phpcs.xml**
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="Rules for PHPCS">
+    <description>
+        Checks the code style quality of the code
+    </description>
+
+    <file>./src</file>
+    <file>./tests</file>
+
+    <rule ref="PSR1"/>
+    <rule ref="PSR2"/>
+</ruleset>
+```
+
+#### PHPMD
+
+PHPMD is a big meany... but it gets the job done. We're turning on all the rules, and for now, no exceptions.
+
+**phpmd.xml**
+
+```xml
+<?xml version="1.0"?>
+<ruleset name="Rules for PHPMD"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
+                     http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="
+                     http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>
+        Checks the logical quality of the code
+    </description>
+
+    <!-- Import the entire unused code rule set -->
+    <rule ref="rulesets/cleancode.xml" />
+    <rule ref="rulesets/codesize.xml" />
+    <rule ref="rulesets/controversial.xml" />
+    <rule ref="rulesets/design.xml" />
+    <rule ref="rulesets/naming.xml" />
+    <rule ref="rulesets/unusedcode.xml" />
+</ruleset>
+```
 
 Part 2 - OAuth Provider
 -----------------------
