@@ -112,6 +112,41 @@ In order to autoload this file in the future, we need to tell composer about it.
 
 Once you've done that, run `composer dump-autoload` to regenerate the autoloader.
 
+#### Entry Point
+
+Now that we have our initial controller, we need to tell Aye Aye about it. Users will access the API through a simple
+publicly accessible index file:
+
+**public/index.php**
+
+```php
+<?php
+/**
+ * index.php
+ * @author    Daniel Mason <daniel@ayeayeapi.com>
+ * @copyright (c) 2016 Daniel Mason <daniel@ayeayeapi.com>
+ * @license   MIT
+ * @see       https://github.com/AyeAyeApi/tutorial-auth
+ */
+
+require_once '../vendor/autoload.php';
+
+use AyeAye\Auth\Version1;
+use AyeAye\Api\Api;
+
+$initialController = new Version1();
+$api = new Api($initialController);
+$api->go()->respond();
+```
+
+We can test this worked using PHP's built in server. From our project root:
+
+```bash
+php -S localhost:8000 -t public & # Start PHP's server, point it at out public docroot, run it in the background
+curl localhost:8000               # Curl the server, it should return {"data":{"controllers":[],"endpoints":[]}}
+fg                                # Bring the server back to the foreground, you can now close it with Ctrl+C
+```
+
 Part 2 - OAuth Provider
 -----------------------
 
