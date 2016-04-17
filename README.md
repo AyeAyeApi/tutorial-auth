@@ -98,6 +98,20 @@ RESTful as it no longer refers to the resource, however it is the easiest to imp
 Aye Aye automatically makes it discoverable. We'll talk more about that later. If you'd like to read about the other
 ways to do it, this is a great article: [Your API versioning is wrong][api-versioning]
 
+In order to autoload this file in the future, we need to tell composer about it. You'll need to open your 
+`composer.json` and add the following:
+
+```json
+{
+    ...
+    "autoload": {
+        "psr-4": {"AyeAye\\Auth\\": "src/"}
+    }
+}
+```
+
+Once you've done that, run `composer dump-autoload` to regenerate the autoloader.
+
 Part 2 - OAuth Provider
 -----------------------
 

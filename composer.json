@@ -17,5 +17,8 @@
         "phpunit/phpunit": "^4.8",
         "squizlabs/php_codesniffer": "^2.6",
         "phpmd/phpmd": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {"AyeAye\\Auth\\": "src/"}
     }
 }
