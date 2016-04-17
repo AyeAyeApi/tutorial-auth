@@ -62,6 +62,41 @@ Next, lets configure our quality and testing utilities.
 We're going to put our source code in a director called `src`, our tests in a directory called `tests` and our public 
 files in a directory called `public`.
 
+#### Initial Controller
+
+We'll start by creating an empty controller. This is just enough to get a 200 response. 
+
+**src/Version1.php**
+
+```php
+<?php
+/**
+ * Version1.php
+ * @author    Daniel Mason <daniel@ayeayeapi.com>
+ * @copyright (c) 2016 Daniel Mason <daniel@ayeayeapi.com>
+ * @license   MIT
+ * @see       https://github.com/AyeAyeApi/tutorial-auth
+ */
+
+namespace AyeAye\Auth;
+
+use AyeAye\Api\Controller;
+
+/**
+ * Class Version1
+ * @package AyeAye\Auth
+ */
+class Version1 extends Controller
+{
+
+}
+```
+
+We've called the controller Version1. At the time of writing, there is no single "best practice" for versioning API's,
+just a number of not-very-good practices. Using the url method of versioning (i.e. `/v1`, `/v2`) is not considered
+RESTful as it no longer refers to the resource, however it is the easiest to implement, the easiest to understand, and 
+Aye Aye automatically makes it discoverable. We'll talk more about that later. If you'd like to read about the other
+ways to do it, this is a great article: [Your API versioning is wrong][api-versioning]
 
 Part 2 - OAuth Provider
 -----------------------
@@ -83,3 +118,5 @@ Part 2 - OAuth Provider
 [phpunit]: https://github.com/sebastianbergmann/phpunit
 [phpcs]: https://github.com/squizlabs/PHP_CodeSniffer
 [phpmd]: https://github.com/phpmd/phpmd
+
+[api-versioning]: https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/
