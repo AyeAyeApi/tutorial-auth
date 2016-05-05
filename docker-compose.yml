@@ -1,0 +1,26 @@
+server:
+  build: docker/nginx
+  ports:
+    - 80
+  links:
+    - fastcgi
+
+fastcgi:
+  image: php:7.0-fpm
+  links:
+    - database
+  volumes_from:
+    - file_data
+
+database:
+  image: mariadb:10.1
+  environment:
+    MYSQL_RANDOM_ROOT_PASSWORD: "true"
+    MYSQL_DATABASE: test_db
+    MYSQL_USER:     test_user
+    MYSQL_PASSWORD: test_password
+
+file_data:
+  image: debian:jessie
+  volumes:
+    - .:/var/www/html
