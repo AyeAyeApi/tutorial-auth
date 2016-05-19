@@ -7,7 +7,7 @@
  * @see       https://github.com/AyeAyeApi/tutorial-auth
  */
 
-namespace AyeAye\Auth;
+namespace AyeAye\Auth\Api;
 
 use AyeAye\Api\Controller;
 

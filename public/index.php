@@ -9,7 +9,7 @@
 
 require_once '../vendor/autoload.php';
 
-use AyeAye\Auth\Version1;
+use AyeAye\Auth\Api\Version1;
 use AyeAye\Api\Api;
 
 $initialController = new Version1();

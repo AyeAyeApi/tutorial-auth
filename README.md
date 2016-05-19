@@ -66,7 +66,7 @@ files in a directory called `public`.
 
 We'll start by creating an empty controller. This is just enough to get a 200 response. 
 
-**src/Version1.php**
+**src/Api/Version1.php**
 
 ```php
 <?php
@@ -78,7 +78,7 @@ We'll start by creating an empty controller. This is just enough to get a 200 re
  * @see       https://github.com/AyeAyeApi/tutorial-auth
  */
 
-namespace AyeAye\Auth;
+namespace AyeAye\Auth\Api;
 
 use AyeAye\Api\Controller;
 
@@ -131,7 +131,7 @@ publicly accessible index file:
 
 require_once '../vendor/autoload.php';
 
-use AyeAye\Auth\Version1;
+use AyeAye\Auth\Api\Version1;
 use AyeAye\Api\Api;
 
 $initialController = new Version1();
