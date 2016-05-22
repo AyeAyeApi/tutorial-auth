@@ -70,13 +70,6 @@ We'll start by creating an empty controller. This is just enough to get a 200 re
 
 ```php
 <?php
-/**
- * Version1.php
- * @author    Daniel Mason <daniel@ayeayeapi.com>
- * @copyright (c) 2016 Daniel Mason <daniel@ayeayeapi.com>
- * @license   MIT
- * @see       https://github.com/AyeAyeApi/tutorial-auth
- */
 
 namespace AyeAye\Auth\Api;
 
@@ -121,13 +114,6 @@ publicly accessible index file:
 
 ```php
 <?php
-/**
- * index.php
- * @author    Daniel Mason <daniel@ayeayeapi.com>
- * @copyright (c) 2016 Daniel Mason <daniel@ayeayeapi.com>
- * @license   MIT
- * @see       https://github.com/AyeAyeApi/tutorial-auth
- */
 
 require_once '../vendor/autoload.php';
 
