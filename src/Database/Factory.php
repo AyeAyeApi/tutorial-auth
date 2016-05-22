@@ -41,20 +41,19 @@ class Factory
     public static function getEntityManager()
     {
         if (!static::$entityManager) {
-            $paths = [
-                realpath(__DIR__ . "/Entity")
-            ];
+            // Set up the Database Entities
+            $paths = [ __DIR__ . "/Entity" ];
             $isDevMode = false;
+            $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
 
-            $sqliteFile = sys_get_temp_dir().'/db.sqlite';
+            // Create the Entity Manager
+            $sqliteFile = __DIR__.'/../../db.sqlite';
             $dbParams = [
                 'driver'   => 'pdo_sqlite',
                 'user'     => 'root',
                 'password' => '',
                 'path'     => $sqliteFile,
             ];
-
-            $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
             static::$entityManager = EntityManager::create($dbParams, $config);
 
             // If the database file doesn't exist, make it

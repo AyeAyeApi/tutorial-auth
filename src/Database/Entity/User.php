@@ -9,6 +9,7 @@
 
 namespace AyeAye\Auth\Database\Entity;
 
+use AyeAye\Formatter\Serializable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User
+class User implements Serializable
 {
 
     /**
@@ -79,5 +80,17 @@ class User
     public function setPassword($passwordHash)
     {
         $this->passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
+    }
+
+    /**
+     * Serialise for Aye Aye Api response
+     * @return array
+     */
+    public function ayeAyeSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'email' => $this->getEmail()
+        ];
     }
 }
